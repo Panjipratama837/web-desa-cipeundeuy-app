@@ -1,0 +1,54 @@
+.form .bi-search {
+  position: absolute;
+  font-size: 1.2rem;
+  top: 5px;
+  left: 15px;
+  color: #9ca3af;
+}
+
+.form-control {
+  text-indent: 33px;
+}
+
+.form {
+  position: relative;
+}
+
+.nav-item .nav-link {
+  color: var(--secondary);
+  font-size: 16px;
+}
+
+.bg-color-primary,
+.bg-transparent {
+  transition: all 0.3s ease-in-out;
+}
+
+.bg-color-primary {
+  background: var(--primary);
+}
+
+.nav-item .active {
+  position: relative;
+}
+
+.nav-item .active::before {
+  content: "";
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.729;
+  width: 7px;
+  height: 7px;
+  margin: 0 10px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+
+.nav-item {
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  color: var(--secondary) !important;
+}

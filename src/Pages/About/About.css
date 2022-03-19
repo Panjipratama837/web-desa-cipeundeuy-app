@@ -1,0 +1,39 @@
+#header-about {
+  background-color: #26ae5c;
+  height: 70vh;
+}
+
+.text-about {
+  color: var(--secondary);
+}
+
+.sejarah {
+  background-color: #e9efea;
+}
+
+.table-color {
+  background-color: var(--primary) !important;
+}
+
+.mytable > tbody > tr > td,
+.mytable > tbody > tr > th,
+.mytable > tfoot > tr > td,
+.mytable > tfoot > tr > th,
+.mytable > thead > tr > td,
+.mytable > thead > tr > th {
+  padding: 1rem;
+}
+
+.mytable > thead > tr {
+  border-radius: 100px;
+}
+
+.wrapper {
+  padding: 1rem;
+  padding-right: 1rem;
+  line-height: 50px;
+  width: 50%;
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+}
