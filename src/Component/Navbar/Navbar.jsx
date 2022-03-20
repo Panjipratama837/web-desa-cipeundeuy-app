@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-transparent text-white fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
       <div className="container">
         <Link className="navbar-brand text-white" to="/">
           Cipeundeuy
@@ -65,62 +65,6 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-    // <nav className="navbar navbar-expand-lg bg-transparent text-white fixed-top py-3">
-    //   <div className="container">
-    //     <Link className="navbar-brand text-white" to="/">
-    //       Cipeundeuy
-    //     </Link>
-    //     <button
-    //       className="navbar-toggler"
-    //       type="button"
-    //       data-bs-toggle="collapse"
-    //       data-bs-target="#navbarNav"
-    //       aria-controls="navbarNav"
-    //       aria-expanded="false"
-    //       aria-label="Toggle navigation"
-    //     >
-    //       <span className="navbar-toggler-icon"></span>
-    //     </button>
-    //     <div className="collapse navbar-collapse" id="navbarNav">
-    //       <ul className="navbar-nav ms-auto">
-    //         <li className="nav-item" onClick={handleToggle}>
-    //           <Link className="nav-link " to="/">
-    //             Info Desa
-    //           </Link>
-    //         </li>
-    //         <li className="nav-item" onClick={handleToggle}>
-    //           <NavLink className="nav-link" to="/Parawisata">
-    //             Parawisata
-    //           </NavLink>
-    //         </li>
-
-    //         <li className="nav-item" onClick={handleToggle}>
-    //           <NavLink className="nav-link" to="/UMKM">
-    //             UMKM
-    //           </NavLink>
-    //         </li>
-
-    //         <li className="nav-item" onClick={handleToggle}>
-    //           <NavLink className="nav-link" to="/Berita">
-    //             Berita
-    //           </NavLink>
-    //         </li>
-
-    //         <li className="nav-item">
-    //           <form className="form d-flex">
-    //             <i className="bi bi-search"></i>
-    //             <input
-    //               className="form-control "
-    //               type="search"
-    //               placeholder="Cari judul artikel ..."
-    //               aria-label="Search"
-    //             />
-    //           </form>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </nav>
   );
 };
 
