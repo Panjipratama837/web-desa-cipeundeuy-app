@@ -1,0 +1,24 @@
+1. 
+// Untuk remove data yang sama, contoh kasus (get data category)
+//  get unique categories from filterData newsSite
+  const uniqueCategories = [
+    ...new Set(filterData.map((item) => item.newsSite)),
+  ];
+
+  const displayUniqueCategories = uniqueCategories.map((category) => {
+    return (
+      <button
+        className="btn btn-outline-primary"
+        value={category}
+        onClick={handleSelect}
+        key={category}
+      >
+        {category}
+      </button>
+    );
+  });
+
+  console.log(uniqueCategories);
+
+
+  2. 

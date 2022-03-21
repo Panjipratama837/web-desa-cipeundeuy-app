@@ -36,13 +36,13 @@ const ProgressBar = ({ value, max, color, width, nama, jumlah }) => {
   return (
     <Container color={color} width={width}>
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-3">
           <span>{nama}</span>
         </div>
-        <div className="col-md-7">
+        <div className="col-7">
           <progress value={value} max={max} />
         </div>
-        <div className="col-md-2 ">
+        <div className="col-2 ">
           <span>{jumlah}</span>
         </div>
       </div>

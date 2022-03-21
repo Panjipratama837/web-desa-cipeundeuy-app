@@ -18,7 +18,7 @@
 }
 
 .image-container {
-  margin-top: 10%;
+  margin-top: 15%;
 }
 
 .text-color-primary {
@@ -114,7 +114,12 @@ section {
   line-height: 30px;
 }
 
-.icon-modal i span {
+.icon-modal-berita i {
+  margin-right: 1rem;
+}
+
+.icon-modal i span,
+.icon-modal-berita i span {
   margin-left: 0.5rem;
 }
 
@@ -123,9 +128,40 @@ section {
   font-weight: bold;
 }
 
+.categories button {
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 450px) and (max-width: 834px) {
+  #header {
+    height: 50vh;
+  }
+
+  .image-container {
+    margin-top: 35%;
+  }
+
+  .h1-large {
+    font-size: 1.5rem;
+  }
+
+  .text-container {
+    margin-top: 55%;
+  }
+
+  .categories button {
+    margin-top: 0;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .card {
     width: 22rem;
+    margin-top: 0;
+  }
+
+  .categories button {
     margin-top: 0;
   }
 }

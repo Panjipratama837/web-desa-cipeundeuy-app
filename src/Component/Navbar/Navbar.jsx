@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -12,18 +13,18 @@ const Navbar = () => {
     navbarToggler.setAttribute("aria-expanded", "false");
   };
 
-  // onscroll replace bg-transparent with bg-primary
+  // onscroll replace bg-nav-transparent with bg-primary
   window.onscroll = function () {
     const navbar = document.querySelector(".navbar");
     if (window.pageYOffset > 50) {
-      navbar.classList.replace("bg-transparent", "bg-color-primary");
+      navbar.classList.replace("bg-nav-transparent", "bg-color-primary");
     } else {
-      navbar.classList.replace("bg-color-primary", "bg-transparent");
+      navbar.classList.replace("bg-color-primary", "bg-nav-transparent");
     }
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-nav-transparent fixed-top">
       <div className="container">
         <Link className="navbar-brand text-white" to="/">
           Cipeundeuy
@@ -41,25 +42,41 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item" onClick={handleToggle}>
-              <NavLink className="nav-link" to="/">
-                Beranda
-              </NavLink>
+            <li className="nav-item">
+              <HashLink
+                className="nav-link"
+                to={"/#header"}
+                onClick={handleToggle}
+              >
+                Info Desa
+              </HashLink>
             </li>
-            <li className="nav-item" onClick={handleToggle}>
-              <NavLink className="nav-link" to="/Parawisata">
+            <li className="nav-item">
+              <HashLink
+                className="nav-link"
+                to={"/#parawisata"}
+                onClick={handleToggle}
+              >
                 Parawisata
-              </NavLink>
+              </HashLink>
             </li>
-            <li className="nav-item" onClick={handleToggle}>
-              <NavLink className="nav-link" to="/UMKM">
+            <li className="nav-item">
+              <HashLink
+                className="nav-link"
+                to={"/#produk"}
+                onClick={handleToggle}
+              >
                 UMKM
-              </NavLink>
+              </HashLink>
             </li>
-            <li className="nav-item" onClick={handleToggle}>
-              <NavLink className="nav-link" to="/Berita">
+            <li className="nav-item">
+              <HashLink
+                className="nav-link"
+                to={"/#berita"}
+                onClick={handleToggle}
+              >
                 Berita
-              </NavLink>
+              </HashLink>
             </li>
           </ul>
         </div>

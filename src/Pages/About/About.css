@@ -7,7 +7,7 @@
   color: var(--secondary);
 }
 
-.sejarah {
+.wilayah {
   background-color: #e9efea;
 }
 
@@ -32,8 +32,7 @@
   padding: 1rem;
   padding-right: 1rem;
   line-height: 50px;
-  width: 50%;
+  width: 100%;
   background: white;
   border-radius: 20px;
-  width: 90%;
 }

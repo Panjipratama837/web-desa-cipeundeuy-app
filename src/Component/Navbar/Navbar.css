@@ -20,11 +20,12 @@
 }
 
 .bg-color-primary,
-.bg-transparent {
+.bg-nav-transparent {
   transition: all 0.3s ease-in-out;
 }
 
-.bg-color-primary {
+.bg-color-primary,
+.bg-nav-transparent {
   background: var(--primary);
 }
 
@@ -48,7 +49,19 @@
   padding: 0.5rem 1rem;
 }
 
+.nav-link {
+  cursor: pointer;
+}
+
 .nav-link:focus,
 .nav-link:hover {
   color: var(--secondary) !important;
+}
+
+/* media query */
+
+@media screen and (min-width: 992px) {
+  .bg-nav-transparent {
+    background: transparent;
+  }
 }
