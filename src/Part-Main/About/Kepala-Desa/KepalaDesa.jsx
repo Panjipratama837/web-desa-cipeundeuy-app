@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade, Zoom } from "react-reveal";
 
 const KepalaDesa = () => {
   const kepalaDesa = [
@@ -111,30 +112,36 @@ const KepalaDesa = () => {
     },
   ];
 
-  const displayKepalaDesa = kepalaDesa.map((item) => {
+  const displayKepalaDesa = kepalaDesa.map((item, index) => {
     return (
-      <tr key={item.id} className="text-color-primary text-center">
-        <th scope="row">{item.id}</th>
-        <td>{item.nama}</td>
-        <td>{item.keterangan}</td>
-      </tr>
+      <Fade bottom delay={index * 200}>
+        <tr key={item.id} className="text-color-primary text-center">
+          <th scope="row">{item.id}</th>
+          <td>{item.nama}</td>
+          <td>{item.keterangan}</td>
+        </tr>
+      </Fade>
     );
   });
   return (
     <section id="kepala-desa" className="kepala-desa">
       <div className="container">
         <div className="text-center mb-5">
-          <h3 className="title-primary">Nama Kepala Desa</h3>
+          <Zoom delay={300}>
+            <h3 className="title-primary">Nama Kepala Desa</h3>
+          </Zoom>
         </div>
 
         <table className="table mytable table-borderless mt-3">
-          <thead className="table-color">
-            <tr className="text-white text-center">
-              <th scope="col">No</th>
-              <th scope="col">Kepala Desa</th>
-              <th scope="col">Keterangan</th>
-            </tr>
-          </thead>
+          <Fade bottom delay={400}>
+            <thead className="table-color">
+              <tr className="text-white text-center">
+                <th scope="col">No</th>
+                <th scope="col">Kepala Desa</th>
+                <th scope="col">Keterangan</th>
+              </tr>
+            </thead>
+          </Fade>
           <tbody>{displayKepalaDesa}</tbody>
         </table>
       </div>

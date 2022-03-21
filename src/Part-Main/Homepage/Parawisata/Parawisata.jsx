@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import Fade from "react-reveal/Fade";
 
 const Parawisata = () => {
   const [data, setData] = useState([]);
@@ -29,19 +30,24 @@ const Parawisata = () => {
 
   const displayParawisata = data
     .slice(pagesVisited, pagesVisited + displayPerPage)
-    .map((item) => {
+    .map((item, index) => {
       return (
-        <div key={item.id} className="col-md-6 col-lg-4">
-          <img
-            src={item.imageUrl}
-            className="card-img-top img-component"
-            alt={item.title}
-            data-bs-toggle="modal"
-            data-bs-target={`#modal${item.id}`}
-          />
-          <div className="card-body">
-            <h5 className="card-title card-title-primary">{item.title}</h5>
-          </div>
+        <>
+          <Fade bottom delay={index * 700}>
+            <div key={item.id} className="col-md-6 col-lg-4">
+              <img
+                src={item.imageUrl}
+                className="card-img-top img-component"
+                alt={item.title}
+                data-bs-toggle="modal"
+                data-bs-target={`#modal${item.id}`}
+              />
+              <div className="card-body">
+                <h5 className="card-title card-title-primary">{item.title}</h5>
+              </div>
+            </div>
+          </Fade>
+
           <div
             className="modal fade"
             id={`modal${item.id}`}
@@ -103,7 +109,7 @@ const Parawisata = () => {
               </div>
             </div>
           </div>
-        </div>
+        </>
       );
     });
 
@@ -117,28 +123,32 @@ const Parawisata = () => {
     <section id="parawisata" className="parawisata">
       <div className="container pt-5">
         <div className="text-center mb-5">
-          <h1 className="title-primary">Explore Pariwisata Terbaik</h1>
+          <Fade top delay={300}>
+            <h1 className="title-primary">Explore Pariwisata Terbaik</h1>
+          </Fade>
         </div>
         <div className="row mb-5">{displayParawisata}</div>
-        <ReactPaginate
-          previousLabel="&lt;"
-          nextLabel="&gt;"
-          breakLabel="..."
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={changePage}
-          containerClassName="pagination justify-content-center"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          nextClassName="page-item"
-          breakClassName="page-item"
-          previousLinkClassName="page-link"
-          nextLinkClassName="page-link"
-          breakLinkClassName="page-link"
-          activeClassName="active"
-        />
+        <Fade bottom delay={300}>
+          <ReactPaginate
+            previousLabel="&lt;"
+            nextLabel="&gt;"
+            breakLabel="..."
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={3}
+            onPageChange={changePage}
+            containerClassName="pagination justify-content-center"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            nextClassName="page-item"
+            breakClassName="page-item"
+            previousLinkClassName="page-link"
+            nextLinkClassName="page-link"
+            breakLinkClassName="page-link"
+            activeClassName="active"
+          />
+        </Fade>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import { Fade, Zoom } from "react-reveal";
 
 const Berita = () => {
   const [data, setData] = useState([]);
@@ -33,28 +33,34 @@ const Berita = () => {
 
   const displayBerita = filterData
     .slice(pagesVisited, pagesVisited + displayPerPage)
-    .map((item) => {
+    .map((item, index) => {
       return (
         <div key={item.id} className="col-md-6">
-          <div className="row">
-            <div className="col-md-6">
-              <img
-                src={item.imageUrl}
-                className="img-thumbnail"
-                alt="artikel-1"
-                data-bs-toggle="modal"
-                data-bs-target={`#modal${item.id}`}
-              />
+          <Fade bottom delay={index * 400}>
+            <div className="row">
+              <div className="col-md-6">
+                <img
+                  src={item.imageUrl}
+                  className="img-thumbnail"
+                  alt="artikel-1"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#modal${item.id}`}
+                />
+              </div>
+              <div className="col-md-6">
+                <h5 className="text-color-primary">{item.title}</h5>
+                <h6 className="text-muted">{`Category : ${item.newsSite}`}</h6>
+                <p className="text-muted">{`${item.summary.slice(
+                  0,
+                  50
+                )} ...`}</p>
+                <i className="bi bi-calendar-check text-color-primary">
+                  <span className="mx-2">{item.publishedAt}</span>
+                </i>
+              </div>
             </div>
-            <div className="col-md-6">
-              <h5 className="text-color-primary">{item.title}</h5>
-              <h6 className="text-muted">{`Category : ${item.newsSite}`}</h6>
-              <p className="text-muted">{`${item.summary.slice(0, 50)} ...`}</p>
-              <i className="bi bi-calendar-check text-color-primary">
-                <span className="mx-2">{item.publishedAt}</span>
-              </i>
-            </div>
-          </div>
+          </Fade>
+
           <div
             className="modal fade"
             id={`modal${item.id}`}
@@ -143,26 +149,31 @@ const Berita = () => {
 
   const displayBeritaByCategories = filterByCategories
     .slice(pagesVisited, pagesVisited + displayPerPage)
-    .map((item) => {
+    .map((item, index) => {
       return (
         <div key={item.id} className="col-md-6">
           <div className="row">
-            <div className="col-md-6">
-              <img
-                src={item.imageUrl}
-                className="img-thumbnail"
-                alt="artikel-1"
-                data-bs-toggle="modal"
-                data-bs-target={`#modal${item.id}`}
-              />
-            </div>
-            <div className="col-md-6">
-              <h5 className="text-color-primary">{item.title}</h5>
-              <p className="text-muted">{`${item.summary.slice(0, 50)} ...`}</p>
-              <i className="bi bi-calendar-check text-color-primary">
-                <span className="mx-2">{item.publishedAt}</span>
-              </i>
-            </div>
+            <Fade bottom delay={index * 400}>
+              <div className="col-md-6">
+                <img
+                  src={item.imageUrl}
+                  className="img-thumbnail"
+                  alt="artikel-1"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#modal${item.id}`}
+                />
+              </div>
+              <div className="col-md-6">
+                <h5 className="text-color-primary">{item.title}</h5>
+                <p className="text-muted">{`${item.summary.slice(
+                  0,
+                  50
+                )} ...`}</p>
+                <i className="bi bi-calendar-check text-color-primary">
+                  <span className="mx-2">{item.publishedAt}</span>
+                </i>
+              </div>
+            </Fade>
           </div>
           <div
             className="modal fade"
@@ -234,16 +245,18 @@ const Berita = () => {
     ...new Set(filterData.map((item) => item.newsSite)),
   ];
 
-  const displayUniqueCategories = uniqueCategories.map((category) => {
+  const displayUniqueCategories = uniqueCategories.map((category, index) => {
     return (
-      <button
-        className="btn btn-outline-primary"
-        value={category}
-        onClick={handleSelect}
-        key={category}
-      >
-        {category}
-      </button>
+      <Zoom delay={index * 500}>
+        <button
+          className="btn btn-outline-primary"
+          value={category}
+          onClick={handleSelect}
+          key={category}
+        >
+          {category}
+        </button>
+      </Zoom>
     );
   });
 
@@ -252,32 +265,38 @@ const Berita = () => {
     <section id="berita" className="berita">
       <div className="container pt-5">
         <div className="text-center mb-5">
-          <h1 className="title-primary">Berita Terbaru</h1>
+          <Fade top delay={300}>
+            <h1 className="title-primary">Berita Terbaru</h1>
+          </Fade>
         </div>
         <div className="row">
           <div className="col-md-8">
             <div className="categories">
-              <button
-                className="btn btn-outline-primary"
-                value={"All"}
-                onClick={handleSelect}
-              >
-                All
-              </button>
+              <Zoom delay={400}>
+                <button
+                  className="btn btn-outline-primary"
+                  value={"All"}
+                  onClick={handleSelect}
+                >
+                  All
+                </button>
+              </Zoom>
               {displayUniqueCategories}
             </div>
           </div>
           <div className="col-md-4 mt-4 mt-md-0 mt-lg-0">
-            <form className="form d-flex justify-content-end">
-              <i className="bi bi-search"></i>
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Cari parawisata atau UMKM"
-                aria-label="Search"
-                onChange={handleSearch}
-              />
-            </form>
+            <Zoom delay={2300}>
+              <form className="form d-flex justify-content-end">
+                <i className="bi bi-search"></i>
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Cari parawisata atau UMKM"
+                  aria-label="Search"
+                  onChange={handleSearch}
+                />
+              </form>
+            </Zoom>
           </div>
         </div>
         <div className="content mb-5">

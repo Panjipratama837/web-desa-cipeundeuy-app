@@ -133,6 +133,10 @@ section {
   margin-top: 1rem;
 }
 
+.img-component {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 450px) and (max-width: 834px) {
   #header {
     height: 50vh;
@@ -148,10 +152,6 @@ section {
 
   .text-container {
     margin-top: 55%;
-  }
-
-  .categories button {
-    margin-top: 0;
   }
 }
 
