@@ -7,7 +7,8 @@ const Berita = () => {
   const [data, setData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [search, setSearch] = useState("");
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState("All");
+  // active class for categories
 
   useEffect(() => {
     axios
@@ -36,7 +37,7 @@ const Berita = () => {
     .map((item, index) => {
       return (
         <div key={item.id} className="col-md-6">
-          <Fade bottom delay={index * 400}>
+          <Fade bottom delay={index * 200}>
             <div className="row">
               <div className="col-md-6">
                 <img
@@ -59,6 +60,7 @@ const Berita = () => {
                 </i>
               </div>
             </div>
+            <hr className="mt-3" />
           </Fade>
 
           <div
@@ -121,7 +123,6 @@ const Berita = () => {
               </div>
             </div>
           </div>
-          <hr className="mt-3" />
         </div>
       );
     });
@@ -153,7 +154,7 @@ const Berita = () => {
       return (
         <div key={item.id} className="col-md-6">
           <div className="row">
-            <Fade bottom delay={index * 400}>
+            <Fade bottom delay={index * 200}>
               <div className="col-md-6">
                 <img
                   src={item.imageUrl}
@@ -173,6 +174,7 @@ const Berita = () => {
                   <span className="mx-2">{item.publishedAt}</span>
                 </i>
               </div>
+              <hr className="mt-3" />
             </Fade>
           </div>
           <div
@@ -235,7 +237,6 @@ const Berita = () => {
               </div>
             </div>
           </div>
-          <hr className="mt-3" />
         </div>
       );
     });
@@ -249,7 +250,9 @@ const Berita = () => {
     return (
       <Zoom delay={index * 500}>
         <button
-          className="btn btn-outline-primary"
+          className={
+            (select === category ? "active" : "") + " btn btn-outline-primary"
+          }
           value={category}
           onClick={handleSelect}
           key={category}
@@ -274,7 +277,12 @@ const Berita = () => {
             <div className="categories">
               <Zoom delay={400}>
                 <button
-                  className="btn btn-outline-primary"
+                  // create classname active if select === All or select === (empty string)
+                  className={
+                    (select === "All" ? "active" : "") +
+                    " btn btn-outline-primary"
+                  }
+                  id="btn-all"
                   value={"All"}
                   onClick={handleSelect}
                 >
@@ -305,9 +313,8 @@ const Berita = () => {
               <div className="wrapper-berita mt-5">
                 <div className="content-berita pt-5 mx-5">
                   <div className="row">
-                    {select === "" && displayBerita}
-                    {select !== null && displayBeritaByCategories}
                     {select === "All" && displayBerita}
+                    {select !== null && displayBeritaByCategories}
                   </div>
                 </div>
               </div>
