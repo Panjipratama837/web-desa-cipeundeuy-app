@@ -9,7 +9,7 @@ const Parawisata = () => {
 
   useEffect(() => {
     axios
-      .get("https://api.spaceflightnewsapi.net/v3/articles")
+      .get("https://desa-cipeundeuy-backend.vercel.app/pariwisata/")
       .then((res) => {
         setData(res.data);
       })
@@ -24,7 +24,6 @@ const Parawisata = () => {
 
   const displayPerPage =
     window.innerWidth >= 577 && window.innerWidth <= 834 ? 2 : 3;
-  console.log(window.innerWidth);
 
   const pagesVisited = pageNumber * displayPerPage;
 
@@ -32,19 +31,17 @@ const Parawisata = () => {
     .slice(pagesVisited, pagesVisited + displayPerPage)
     .map((item, index) => {
       return (
-        <>
+        <div className="col-md-6 col-lg-4" key={index}>
           <Fade bottom delay={index * 700}>
-            <div key={item.id} className="col-md-6 col-lg-4">
-              <img
-                src={item.imageUrl}
-                className="card-img-top img-component"
-                alt={item.title}
-                data-bs-toggle="modal"
-                data-bs-target={`#modal${item.id}`}
-              />
-              <div className="card-body">
-                <h5 className="card-title card-title-primary">{item.title}</h5>
-              </div>
+            <img
+              src={item.image_id}
+              className="card-img-top img-component"
+              alt={item.title}
+              data-bs-toggle="modal"
+              data-bs-target={`#modal${item.id}`}
+            />
+            <div className="card-body">
+              <h5 className="card-title card-title-primary">{item.title}</h5>
             </div>
           </Fade>
 
@@ -70,38 +67,38 @@ const Parawisata = () => {
                     <div className="col-md-7 col-7">
                       <picture>
                         <img
-                          src={item.imageUrl}
+                          src={item.image_id}
                           className="first-img-modal"
-                          alt="statistik-penduduk"
+                          alt={item.title}
                         />
                       </picture>
                     </div>
                     <div className="col-md-5 col-5">
                       <picture>
                         <img
-                          src={item.imageUrl}
+                          src={item.image_id}
                           className="second-img-modal"
-                          alt="statistik-penduduk"
+                          alt={item.title}
                         />
                       </picture>
                       <picture>
                         <img
-                          src={item.imageUrl}
+                          src={item.image_id}
                           className="second-img-modal"
-                          alt="statistik-penduduk"
+                          alt={item.title}
                         />
                       </picture>
                     </div>
                   </div>
                   <div className="info-detail mt-3 text-color-primary">
                     <h5>{item.title}</h5>
-                    <p>Rp. 25.000,00</p>
+                    <p>Rp. {item.price}</p>
                     <div className="icon-modal">
                       <i className="bi bi-clock">
-                        <span>{`${item.publishedAt} - ${item.updatedAt}`}</span>
+                        <span>{`${item.opening_hours} - ${item.closing_hours} WIB`}</span>
                       </i>
                       <i className="bi bi-compass">
-                        <span>{item.summary}</span>
+                        <span>{item.location}</span>
                       </i>
                     </div>
                   </div>
@@ -109,7 +106,7 @@ const Parawisata = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       );
     });
 

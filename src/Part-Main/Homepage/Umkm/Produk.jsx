@@ -9,7 +9,7 @@ const Produk = () => {
 
   useEffect(() => {
     axios
-      .get("https://api.spaceflightnewsapi.net/v3/articles")
+      .get("https://desa-cipeundeuy-backend.vercel.app/umkm/")
       .then((res) => {
         setData(res.data);
       })
@@ -19,19 +19,20 @@ const Produk = () => {
   }, []);
 
   console.log(data);
+
   const displayPerPage =
     window.innerWidth >= 577 && window.innerWidth <= 834 ? 2 : 3;
-  console.log(window.innerWidth);
+
   const pagesVisited = pageNumber * displayPerPage;
 
   const displayProduk = data
     .slice(pagesVisited, pagesVisited + displayPerPage)
     .map((item, index) => {
       return (
-        <Fade bottom delay={index * 700}>
-          <div key={item.id} className="col-md-6 col-lg-4">
+        <div className="col-md-6 col-lg-4" key={index}>
+          <Fade bottom delay={index * 700}>
             <img
-              src={item.imageUrl}
+              src={item.image_id}
               className="card-img-top img-component"
               alt={item.title}
               data-bs-toggle="modal"
@@ -40,69 +41,70 @@ const Produk = () => {
             <div className="card-body">
               <h5 className="card-title card-title-primary">{item.title}</h5>
             </div>
-            <div
-              className="modal fade"
-              id={`modal${item.id}`}
-              tabIndex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog  modal-dialog-centered">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <div className="row">
-                      <div className="col-md-7 col-7">
-                        <picture>
-                          <img
-                            src={item.imageUrl}
-                            className="first-img-modal"
-                            alt="statistik-penduduk"
-                          />
-                        </picture>
-                      </div>
-                      <div className="col-md-5 col-5">
-                        <picture>
-                          <img
-                            src={item.imageUrl}
-                            className="second-img-modal"
-                            alt="statistik-penduduk"
-                          />
-                        </picture>
-                        <picture>
-                          <img
-                            src={item.imageUrl}
-                            className="second-img-modal"
-                            alt="statistik-penduduk"
-                          />
-                        </picture>
-                      </div>
+          </Fade>
+
+          <div
+            className="modal fade"
+            id={`modal${item.id}`}
+            tabIndex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog  modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <div className="row">
+                    <div className="col-md-7 col-7">
+                      <picture>
+                        <img
+                          src={item.image_id}
+                          className="first-img-modal"
+                          alt={item.title}
+                        />
+                      </picture>
                     </div>
-                    <div className="info-detail mt-3 text-color-primary">
-                      <h5>{item.title}</h5>
-                      <p>Rp. 25.000,00</p>
-                      <div className="icon-modal">
-                        <i className="bi bi-clock">
-                          <span>{`${item.publishedAt} - ${item.updatedAt}`}</span>
-                        </i>
-                        <i className="bi bi-compass">
-                          <span>{item.summary}</span>
-                        </i>
-                      </div>
+                    <div className="col-md-5 col-5">
+                      <picture>
+                        <img
+                          src={item.image_id}
+                          className="second-img-modal"
+                          alt={item.title}
+                        />
+                      </picture>
+                      <picture>
+                        <img
+                          src={item.image_id}
+                          className="second-img-modal"
+                          alt={item.title}
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                  <div className="info-detail mt-3 text-color-primary">
+                    <h5>{item.title}</h5>
+                    <p>Rp. {item.price}</p>
+                    <div className="icon-modal">
+                      <i className="bi bi-clock">
+                        <span>{`${item.opening_hours} - ${item.closing_hours} WIB`}</span>
+                      </i>
+                      <i className="bi bi-compass">
+                        <span>{item.location}</span>
+                      </i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </Fade>
+        </div>
       );
     });
 

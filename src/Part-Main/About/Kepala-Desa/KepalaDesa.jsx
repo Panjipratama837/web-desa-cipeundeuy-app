@@ -114,13 +114,15 @@ const KepalaDesa = () => {
 
   const displayKepalaDesa = kepalaDesa.map((item, index) => {
     return (
-      <Fade bottom delay={index * 200}>
-        <tr key={item.id} className="text-color-primary text-center">
-          <th scope="row">{item.id}</th>
-          <td>{item.nama}</td>
-          <td>{item.keterangan}</td>
-        </tr>
-      </Fade>
+      <tbody key={index}>
+        <Fade bottom delay={index * 200}>
+          <tr className="text-color-primary text-center">
+            <th scope="row">{item.id}</th>
+            <td>{item.nama}</td>
+            <td>{item.keterangan}</td>
+          </tr>
+        </Fade>
+      </tbody>
     );
   });
   return (
@@ -142,7 +144,7 @@ const KepalaDesa = () => {
               </tr>
             </thead>
           </Fade>
-          <tbody>{displayKepalaDesa}</tbody>
+          {displayKepalaDesa}
         </table>
       </div>
     </section>

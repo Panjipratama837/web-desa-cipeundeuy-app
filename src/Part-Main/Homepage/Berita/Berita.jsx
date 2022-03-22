@@ -8,11 +8,10 @@ const Berita = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("All");
-  // active class for categories
 
   useEffect(() => {
     axios
-      .get("https://api.spaceflightnewsapi.net/v3/articles")
+      .get("https://desa-cipeundeuy-backend.vercel.app/berita/")
       .then((res) => {
         setData(res.data);
       })
@@ -21,14 +20,23 @@ const Berita = () => {
       });
   }, []);
 
+  console.log(data);
+
   const filterData = data.filter((item) => {
     return (
       item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.newsSite.toLowerCase().includes(search.toLowerCase())
+      item.description.toLowerCase().includes(search.toLowerCase()) ||
+      item.slug.toLowerCase().includes(search.toLowerCase())
     );
   });
 
+  // filter by select
+  const filterByCategories = filterData.filter((item) => {
+    return item.slug === select;
+  });
+
   console.log(data);
+
   const displayPerPage = 6;
   const pagesVisited = pageNumber * displayPerPage;
 
@@ -36,27 +44,30 @@ const Berita = () => {
     .slice(pagesVisited, pagesVisited + displayPerPage)
     .map((item, index) => {
       return (
-        <div key={item.id} className="col-md-6">
+        <div key={index} className="col-md-6">
           <Fade bottom delay={index * 200}>
             <div className="row">
               <div className="col-md-6">
                 <img
-                  src={item.imageUrl}
-                  className="img-thumbnail"
+                  src={item.image_id}
+                  className="img-thumbnail img-berita"
                   alt="artikel-1"
                   data-bs-toggle="modal"
-                  data-bs-target={`#modal${item.id}`}
+                  data-bs-target={`#modal${index}`}
                 />
               </div>
               <div className="col-md-6">
-                <h5 className="text-color-primary">{item.title}</h5>
-                <h6 className="text-muted">{`Category : ${item.newsSite}`}</h6>
-                <p className="text-muted">{`${item.summary.slice(
-                  0,
-                  50
-                )} ...`}</p>
+                <h5
+                  className="text-color-primary title-berita"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#modal${index}`}
+                >
+                  {item.title}
+                </h5>
+                <h6 className="text-muted">{`Category : ${item.slug}`}</h6>
+                <p className="text-muted">{item.description}</p>
                 <i className="bi bi-calendar-check text-color-primary">
-                  <span className="mx-2">{item.publishedAt}</span>
+                  <span className="mx-2">{item.created_date}</span>
                 </i>
               </div>
             </div>
@@ -65,7 +76,7 @@ const Berita = () => {
 
           <div
             className="modal fade"
-            id={`modal${item.id}`}
+            id={`modal${index}`}
             tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
@@ -83,36 +94,20 @@ const Berita = () => {
                 <div className="modal-body">
                   <picture>
                     <img
-                      src={item.imageUrl}
+                      src={item.image_id}
                       className="first-img-modal"
                       alt="statistik-penduduk"
                     />
                   </picture>
                   <div className="info-detail mt-3 text-color-primary">
                     <button className="btn btn-outline-success mb-3">
-                      {item.newsSite}
+                      {item.slug}
                     </button>
                     <h5>{item.title}</h5>
-                    <p className="text-muted">
-                      {`${item.summary} || Lorem ipsum dolor, sit amet
-                      consectetur adipisicing elit. Tempora dignissimos illum
-                      reiciendis sed provident? At accusamus quos sit odio
-                      eveniet reprehenderit necessitatibus officia ratione
-                      inventore, soluta sunt veritatis consequatur earum. Iusto
-                      eius hic dolore esse soluta labore nemo qui, repellat quam
-                      dignissimos quas odit tenetur aspernatur placeat,
-                      inventore libero. Dignissimos accusantium aperiam
-                      consectetur sed obcaecati cumque sapiente, explicabo
-                      aspernatur quisquam blanditiis iusto eveniet error in.
-                      Soluta nemo architecto ducimus consequuntur repellat
-                      obcaecati, perspiciatis incidunt ipsum iusto a eum quam
-                      praesentium quod ipsam temporibus, harum, nobis assumenda.
-                      Ex impedit aliquam, voluptatem explicabo modi, molestias,
-                      optio in dolores exercitationem placeat enim repellendus.`}
-                    </p>
+                    <p className="text-muted">{item.description}</p>
                     <div className="icon-modal-berita">
                       <i className="bi bi-calendar-check">
-                        <span className="mx-2">{item.publishedAt}</span>
+                        <span className="mx-2">{item.created_date}</span>
                       </i>
                       <i className="bi bi-share">
                         <span>Bagikan</span>
@@ -141,45 +136,43 @@ const Berita = () => {
     setSelect(e.target.value);
   };
 
-  console.log(select);
-
-  // filter by select
-  const filterByCategories = filterData.filter((item) => {
-    return item.newsSite === select;
-  });
-
   const displayBeritaByCategories = filterByCategories
     .slice(pagesVisited, pagesVisited + displayPerPage)
     .map((item, index) => {
       return (
-        <div key={item.id} className="col-md-6">
-          <div className="row">
-            <Fade bottom delay={index * 200}>
+        <div key={index} className="col-md-6">
+          <Fade bottom delay={index * 200}>
+            <div className="row">
               <div className="col-md-6">
                 <img
-                  src={item.imageUrl}
-                  className="img-thumbnail"
+                  src={item.image_id}
+                  className="img-thumbnail img-berita"
                   alt="artikel-1"
                   data-bs-toggle="modal"
-                  data-bs-target={`#modal${item.id}`}
+                  data-bs-target={`#modal${index}`}
                 />
               </div>
               <div className="col-md-6">
-                <h5 className="text-color-primary">{item.title}</h5>
-                <p className="text-muted">{`${item.summary.slice(
-                  0,
-                  50
-                )} ...`}</p>
+                <h5
+                  className="text-color-primary title-berita"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#modal${index}`}
+                >
+                  {item.title}
+                </h5>
+                <h6 className="text-muted">{`Category : ${item.slug}`}</h6>
+                <p className="text-muted">{item.description}</p>
                 <i className="bi bi-calendar-check text-color-primary">
-                  <span className="mx-2">{item.publishedAt}</span>
+                  <span className="mx-2">{item.created_date}</span>
                 </i>
               </div>
-              <hr className="mt-3" />
-            </Fade>
-          </div>
+            </div>
+            <hr className="mt-3" />
+          </Fade>
+
           <div
             className="modal fade"
-            id={`modal${item.id}`}
+            id={`modal${index}`}
             tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
@@ -197,36 +190,20 @@ const Berita = () => {
                 <div className="modal-body">
                   <picture>
                     <img
-                      src={item.imageUrl}
+                      src={item.image_id}
                       className="first-img-modal"
                       alt="statistik-penduduk"
                     />
                   </picture>
                   <div className="info-detail mt-3 text-color-primary">
                     <button className="btn btn-outline-success mb-3">
-                      {item.newsSite}
+                      {item.slug}
                     </button>
                     <h5>{item.title}</h5>
-                    <p className="text-muted">
-                      {`${item.summary} || Lorem ipsum dolor, sit amet
-                      consectetur adipisicing elit. Tempora dignissimos illum
-                      reiciendis sed provident? At accusamus quos sit odio
-                      eveniet reprehenderit necessitatibus officia ratione
-                      inventore, soluta sunt veritatis consequatur earum. Iusto
-                      eius hic dolore esse soluta labore nemo qui, repellat quam
-                      dignissimos quas odit tenetur aspernatur placeat,
-                      inventore libero. Dignissimos accusantium aperiam
-                      consectetur sed obcaecati cumque sapiente, explicabo
-                      aspernatur quisquam blanditiis iusto eveniet error in.
-                      Soluta nemo architecto ducimus consequuntur repellat
-                      obcaecati, perspiciatis incidunt ipsum iusto a eum quam
-                      praesentium quod ipsam temporibus, harum, nobis assumenda.
-                      Ex impedit aliquam, voluptatem explicabo modi, molestias,
-                      optio in dolores exercitationem placeat enim repellendus.`}
-                    </p>
+                    <p className="text-muted">{item.description}</p>
                     <div className="icon-modal-berita">
                       <i className="bi bi-calendar-check">
-                        <span className="mx-2">{item.publishedAt}</span>
+                        <span className="mx-2">{item.created_date}</span>
                       </i>
                       <i className="bi bi-share">
                         <span>Bagikan</span>
@@ -241,21 +218,18 @@ const Berita = () => {
       );
     });
 
-  //  get unique categories from filterData newsSite
-  const uniqueCategories = [
-    ...new Set(filterData.map((item) => item.newsSite)),
-  ];
+  //  get unique categories from filterData slug
+  const uniqueCategories = [...new Set(filterData.map((item) => item.slug))];
 
   const displayUniqueCategories = uniqueCategories.map((category, index) => {
     return (
-      <Zoom delay={index * 500}>
+      <Zoom delay={index * 500} key={index}>
         <button
           className={
             (select === category ? "active" : "") + " btn btn-outline-primary"
           }
           value={category}
           onClick={handleSelect}
-          key={category}
         >
           {category}
         </button>
@@ -263,7 +237,6 @@ const Berita = () => {
     );
   });
 
-  console.log(uniqueCategories);
   return (
     <section id="berita" className="berita">
       <div className="container pt-5">
@@ -277,7 +250,6 @@ const Berita = () => {
             <div className="categories">
               <Zoom delay={400}>
                 <button
-                  // create classname active if select === All or select === (empty string)
                   className={
                     (select === "All" ? "active" : "") +
                     " btn btn-outline-primary"
@@ -292,7 +264,7 @@ const Berita = () => {
               {displayUniqueCategories}
             </div>
           </div>
-          <div className="col-md-4 mt-4 mt-md-0 mt-lg-0">
+          <div className="col-md-4 mt-4 mt-md-3 mt-lg-0">
             <Zoom delay={2300}>
               <form className="form d-flex justify-content-end">
                 <i className="bi bi-search"></i>

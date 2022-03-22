@@ -133,7 +133,9 @@ section {
   margin-top: 1rem;
 }
 
-.img-component {
+.img-component,
+.img-berita,
+.title-berita {
   cursor: pointer;
 }
 
