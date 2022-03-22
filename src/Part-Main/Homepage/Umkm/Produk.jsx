@@ -116,9 +116,9 @@ const Produk = () => {
   return (
     <section id="produk" className="produk">
       <div className="container pt-5">
-        <div className="title-secondary text-center mb-5">
+        <div className="title-secondary text-center mb-5 ">
           <Fade top delay={300}>
-            <h1>Ciri Khas Daerah (UMKM)</h1>
+            <h1 className="title-primary">Ciri Khas Daerah (UMKM)</h1>
           </Fade>
         </div>
         <div className="row mb-5">{displayProduk}</div>

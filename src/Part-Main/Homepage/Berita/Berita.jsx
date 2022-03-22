@@ -55,6 +55,17 @@ const Berita = () => {
                   data-bs-toggle="modal"
                   data-bs-target={`#modal${index}`}
                 />
+                <div className="wrapper-date mt-2">
+                  <i className="bi bi-calendar-check text-color-primary">
+                    <span className="mx-2">
+                      {new Date(item.created_date).toLocaleDateString("id-ID", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </i>
+                </div>
               </div>
               <div className="col-md-6">
                 <h5
@@ -65,10 +76,18 @@ const Berita = () => {
                   {item.title}
                 </h5>
                 <h6 className="text-muted">{`Category : ${item.slug}`}</h6>
-                <p className="text-muted">{item.description}</p>
-                <i className="bi bi-calendar-check text-color-primary">
-                  <span className="mx-2">{item.created_date}</span>
-                </i>
+                <p className="text-muted">{`${item.description.slice(
+                  0,
+                  50
+                )} ...`}</p>
+
+                <button
+                  className="btn btn-primary mt-1"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#modal${index}`}
+                >
+                  Baca selengkapnya
+                </button>
               </div>
             </div>
             <hr className="mt-3" />
@@ -100,14 +119,23 @@ const Berita = () => {
                     />
                   </picture>
                   <div className="info-detail mt-3 text-color-primary">
-                    <button className="btn btn-outline-success mb-3">
+                    <button className="btn btn-success mb-3">
                       {item.slug}
                     </button>
                     <h5>{item.title}</h5>
                     <p className="text-muted">{item.description}</p>
                     <div className="icon-modal-berita">
                       <i className="bi bi-calendar-check">
-                        <span className="mx-2">{item.created_date}</span>
+                        <span className="mx-2">
+                          {new Date(item.created_date).toLocaleDateString(
+                            "id-ID",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>
                       </i>
                       <i className="bi bi-share">
                         <span>Bagikan</span>
@@ -151,6 +179,17 @@ const Berita = () => {
                   data-bs-toggle="modal"
                   data-bs-target={`#modal${index}`}
                 />
+                <div className="wrapper-date mt-2">
+                  <i className="bi bi-calendar-check text-color-primary">
+                    <span className="mx-2">
+                      {new Date(item.created_date).toLocaleDateString("id-ID", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </i>
+                </div>
               </div>
               <div className="col-md-6">
                 <h5
@@ -161,10 +200,18 @@ const Berita = () => {
                   {item.title}
                 </h5>
                 <h6 className="text-muted">{`Category : ${item.slug}`}</h6>
-                <p className="text-muted">{item.description}</p>
-                <i className="bi bi-calendar-check text-color-primary">
-                  <span className="mx-2">{item.created_date}</span>
-                </i>
+                <p className="text-muted">{`${item.description.slice(
+                  0,
+                  50
+                )} ...`}</p>
+
+                <button
+                  className="btn btn-primary mt-1"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#modal${index}`}
+                >
+                  Baca selengkapnya
+                </button>
               </div>
             </div>
             <hr className="mt-3" />
@@ -196,14 +243,23 @@ const Berita = () => {
                     />
                   </picture>
                   <div className="info-detail mt-3 text-color-primary">
-                    <button className="btn btn-outline-success mb-3">
+                    <button className="btn btn-success mb-3">
                       {item.slug}
                     </button>
                     <h5>{item.title}</h5>
                     <p className="text-muted">{item.description}</p>
                     <div className="icon-modal-berita">
                       <i className="bi bi-calendar-check">
-                        <span className="mx-2">{item.created_date}</span>
+                        <span className="mx-2">
+                          {new Date(item.created_date).toLocaleDateString(
+                            "id-ID",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>
                       </i>
                       <i className="bi bi-share">
                         <span>Bagikan</span>

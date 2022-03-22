@@ -27,7 +27,11 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-nav-transparent fixed-top">
       <div className="container">
         <Link className="navbar-brand text-white" to="/">
-          Cipeundeuy
+          <img
+            src={require("../../Images/logo-desa.png")}
+            alt="logo-desa"
+            className="nav-logo"
+          />
         </Link>
         <button
           className="navbar-toggler"

@@ -9,12 +9,16 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="content-footer text-white">
-                <div className="footer-title mb-4">
-                  <h3>Logo Desa Cipeundeuy</h3>
+                <div className="wrapper-logo mb-4">
+                  <img
+                    src={require("../../Images/logo-desa.png")}
+                    alt="logo-desa"
+                    className="footer-logo"
+                  />
                 </div>
                 <p>
-                  Long established fact that a reader will be distracted by the
-                  readable content of page distracted.
+                  Created by : Kelompok KKN Mahasiswa Nusa putra di Desa
+                  Cipeundeuy 2022
                 </p>
                 <div className="row kontak">
                   <i className="bi bi-telephone">

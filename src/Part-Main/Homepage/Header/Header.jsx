@@ -69,7 +69,7 @@ const Header = () => {
                         <img
                           src={require("../../../Images/carousel-1.jpg")}
                           className="d-block w-100 rounded"
-                          alt="..."
+                          alt="Slider 1"
                         />
                       </picture>
                     </div>
@@ -78,7 +78,7 @@ const Header = () => {
                         <img
                           src={require("../../../Images/carousel-2.jpg")}
                           className="d-block w-100 rounded"
-                          alt="..."
+                          alt="Slider 2"
                         />
                       </picture>
                     </div>
@@ -87,7 +87,7 @@ const Header = () => {
                         <img
                           src={require("../../../Images/carousel-3.jpg")}
                           className="d-block w-100 rounded"
-                          alt="..."
+                          alt="Slider 3"
                         />
                       </picture>
                     </div>
